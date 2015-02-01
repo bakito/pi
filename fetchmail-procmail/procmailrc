@@ -1,0 +1,15 @@
+#sudo nano /etc/procmailrc
+
+LOGFILE=/var/log/procmail.log
+VERBOSE=on
+
+SUBJECT=`formail -xSubject: \ | sed -e 's/[;\`\\]/ /g' \ | expand | sed -e 's/^[ ]*//g' -e 's/[ ]*$//g'` 
+FROM=`formail -rt -xTo: \ | sed -e 's/[;\`\\]/ /g' \ | expand | sed -e 's/^[ ]*//g' -e 's/[ ]*$//g'`
+
+FROM=`formail -rtzxTo:`
+
+:0
+# extract subject into MATCH variable
+* ^Subject:[ ]*\/[^ ].*
+| /home/pi/mail.sh "$MATCH"
+
