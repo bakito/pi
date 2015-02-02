@@ -33,4 +33,10 @@ while [[ -z "$SERVER_FETCH_INTERVAL" ]] ||  [[ ! $SERVER_FETCH_INTERVAL =~ ^-?[0
 	SERVER_FETCH_INTERVAL=$(read_value)
 done
 
-echo "Server Fetch Interval = ${SERVER_FETCH_INTERVAL}"
+
+echo "Installing fetchmail and procmail"
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get -q -y install fetchmail procmail
+
+
+
