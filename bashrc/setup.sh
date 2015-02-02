@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# check root permissions
+if [[ $UID != 0 ]]; then
+    echo "Please start the script as root or sudo!"
+    exit 1
+fi
 
 
 grep history-search-backward ~/.bashrc -q
